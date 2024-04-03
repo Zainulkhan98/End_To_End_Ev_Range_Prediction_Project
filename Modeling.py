@@ -1,12 +1,17 @@
-from Zenml_Pipeline.Feature_engineering import split_step
+from Feature_engineering import split_step
 from zenml import step
 import pandas as pd
 from sklearn import tree
+from zenml.client import Client
+import mlflow.sklearn
 
 # Fitting the model
-@step
+
+experiment_tracker = Client().active_stack.experiment_tracker
+@step(experiment_tracker = experiment_tracker.name)
 def modeling(x_train:pd.DataFrame,y_train:pd.Series) -> tree.DecisionTreeRegressor:
     model = tree.DecisionTreeRegressor().fit(x_train,y_train)
+    mlflow.sklearn.autolog(model)
     return model
 
 

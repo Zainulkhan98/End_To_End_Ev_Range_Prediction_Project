@@ -1,8 +1,9 @@
-from Zenml_Pipeline.Ingest_data import ingest_data
-from Zenml_Pipeline.Feature_engineering import preprocess_data, split_step
-from Zenml_Pipeline.Modeling import modeling,predict
-from Zenml_Pipeline.Model_evaluation import evaluate
+from Ingest_data import ingest_data
+from Feature_engineering import preprocess_data, split_step
+from Modeling import modeling,predict
+from Model_evaluation import evaluate
 from zenml import pipeline
+from zenml.client import Client
 
 
 @pipeline
@@ -24,5 +25,7 @@ def ev_range_prediction_pipeline(data_path: str) -> float:
 
 
 if __name__ == '__main__':
+    print(Client().active_stack.experiment_tracker.get_tracking_uri())
+    print('Running pipeline...')
     ev_range_prediction_pipeline('Data\Electric_Vehicle_Population_Data.csv')
     print('Done!')
