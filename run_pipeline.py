@@ -6,7 +6,7 @@ from zenml import pipeline
 from zenml.client import Client
 
 
-@pipeline
+@pipeline(enable_cache=False)
 def ev_range_prediction_pipeline(data_path: str) -> float:
     """Full ML pipeline."""
     print("Ingesting data...")  # Print statements for debugging
@@ -27,5 +27,5 @@ def ev_range_prediction_pipeline(data_path: str) -> float:
 if __name__ == '__main__':
     print(Client().active_stack.experiment_tracker.get_tracking_uri())
     print('Running pipeline...')
-    ev_range_prediction_pipeline('Data\Electric_Vehicle_Population_Data.csv')
+    ev_range_prediction_pipeline('F:\\Users\DELL\PycharmProjects\End_To_End_Ev_Range_Prediction_Project\Data\Electric_Vehicle_Population_Data.csv')
     print('Done!')
