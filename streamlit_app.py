@@ -21,7 +21,7 @@ def main():
     st.write('This app predicts the range of the Electric Vehicle using the following features:')
 
     columns = {
-        'County': st.selectbox( 'County', county),
+        'County': st.selectbox('County', county),
         'City': st.selectbox('City', city),
         'Postal Code': st.number_input('Postal Code', value=98022),
         'Model Year': st.number_input('Model Year', value=2012),
